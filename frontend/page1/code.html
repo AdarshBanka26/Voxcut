@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Voxcut — Cinema-Grade Generative Studio</title>
+<!-- Google Fonts: Newsreader (Editorial Serif) & Inter (UI Sans) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Newsreader', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              red: '#e03616',
+              darkRed: '#c5280b',
+              surface: '#F8F9FA',
+              border: '#ECEEF1',
+              subtle: '#6B7280',
+            }
+          },
+          boxShadow: {
+            'card-tilt': '0 20px 35px -10px rgba(0, 0, 0, 0.12), 0 8px 16px -6px rgba(0, 0, 0, 0.08)',
+            'card-center': '0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 12px 24px -8px rgba(0, 0, 0, 0.12)',
+            'glow-red': '0 10px 25px -4px rgba(224, 54, 22, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Typography & Global Custom Utilities -->
+<style data-purpose="typography">
+    .font-serif-headline {
+      font-family: 'Newsreader', serif;
+      letter-spacing: -0.025em;
+    }
+  </style>
+<!-- Card Perspective and Fan Layout Styles -->
+<style data-purpose="hero-cards">
+    .fan-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      transform-origin: center bottom;
+      will-change: transform;
+    }
+    .card-1 {
+      transform: translateY(32px) rotate(-11deg);
+    }
+    .card-2 {
+      transform: translateY(12px) rotate(-5.5deg);
+    }
+    .card-3 {
+      transform: translateY(-8px) scale(1.04);
+      z-index: 10;
+    }
+    .card-4 {
+      transform: translateY(12px) rotate(5.5deg);
+    }
+    .card-5 {
+      transform: translateY(32px) rotate(11deg);
+    }
+
+    .fan-card:hover {
+      transform: translateY(-16px) scale(1.06) rotate(0deg) !important;
+      z-index: 30;
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+<!-- Timeline and Mockup UI Styles -->
+<style data-purpose="mockup-ui">
+    .timeline-grid {
+      background-size: 60px 100%;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-white text-neutral-900 font-sans antialiased selection:bg-red-500 selection:text-white">
+<!-- BEGIN: MainHeader -->
+<header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-neutral-100" data-purpose="main-header">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Logo & Brand Badge -->
+<div class="flex items-center space-x-3">
+<a class="flex items-center space-x-2.5 group" href="#">
+<img alt="Voxcut Logo Icon" class="w-8 h-8 rounded-lg shadow-sm transition-transform group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUEggyB6w1yRlq4inmPmflVRumX0bCSHnSDcs2E6OZKilHWO-nFHIu13J6RZ0iAisBRuwOk2HdjM69OoXjY10pHp4Vok-VD2RfIlmwzLgI9udDGgPSgI4YHo1GRrDTkhSBkdswu8deIALSTTtNoUEHWjsYYci3HKZzaEEScfFWO1SQjZHPYeDELmg3Be9wdm4T29_Af0CFZN5B4G3TWR4jiqAQJsfuNH5_5FsO-hbTb6A1Qmq5gMzEI2Bc_9gYl-7qUM0"/>
+<span class="font-bold text-xl tracking-tight text-neutral-950 font-sans">Voxcut</span>
+</a>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-9 text-[14px] font-medium text-neutral-600">
+<a class="hover:text-neutral-950 transition-colors" href="#features">Features</a>
+<a class="hover:text-neutral-950 transition-colors" href="#showcase">Showcase</a>
+<a class="hover:text-neutral-950 transition-colors" href="#templates">Templates</a>
+<a class="hover:text-neutral-950 transition-colors" href="#pricing">Pricing</a>
+</nav>
+<!-- CTA and User Profile -->
+<div class="flex items-center space-x-4">
+<a class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-red rounded-full hover:bg-brand-darkRed shadow-sm hover:shadow-glow-red transition-all duration-200" href="#cta">
+          Start Free
+        </a>
+<button aria-label="User Profile" class="flex rounded-full focus:outline-none ring-2 ring-neutral-200 hover:ring-neutral-400 transition" type="button">
+<img alt="User profile avatar" class="h-8 w-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxO9WE8NKONg5p6F1s-n7FPJ5IWPFEDNauS2gRjDD6Qyv0qHErgmURTOBJ_WeBP22m4Mwp90wLJl_TQMP48TAf4XHSpUCHj6wNXarNYHTuIcvdAllKkFB3FMtK7U2EcunqGEaMOm4P2PzMfom4GplZh_bnKxTAS1qrBtRmk3UBU0inav2m44uWS_mgIPS_vN6ZZ1zmoIYix0J7rodUtcduitUxgitnbTzAQ1_pHJZLN9rL4Z_nJDxLZQ"/>
+</button>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: HeroSection -->
+<section class="pt-16 pb-20 overflow-hidden text-center relative" data-purpose="hero-section">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Studio Pill Badge -->
+<div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wide bg-neutral-100 text-neutral-600 mb-8 border border-neutral-200/60">
+        Voxcut 2.4 <span class="mx-2 text-neutral-300">/</span> Cinema-Grade Generative Studio
+      </div>
+<!-- Editorial Serif Main Headline -->
+<h1 class="font-serif-headline text-5xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[1.08] font-normal text-neutral-950 max-w-4xl mx-auto">
+        Your words. <span class="italic font-normal text-brand-red">Your cuts.</span> Your story.
+      </h1>
+<!-- Subheadline -->
+<p class="mt-6 text-base sm:text-lg text-neutral-500 max-w-2xl mx-auto font-normal leading-relaxed">
+        Transform spoken ideas into cinema-grade edits. Text-synced timeline, intelligent framing, and instant multi-track flow.
+      </p>
+<!-- Dual Call To Actions -->
+<div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+<a class="inline-flex items-center px-7 py-3 rounded-full text-sm font-semibold text-white bg-brand-red hover:bg-brand-darkRed shadow-glow-red hover:shadow-lg transition-all transform hover:-translate-y-0.5" href="#pricing">
+          Start Creating Free
+          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<button class="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200/80 transition-colors border border-neutral-200/70" type="button">
+<svg class="w-4 h-4 mr-2 text-neutral-600 fill-current" viewbox="0 0 20 20">
+<polygon points="6 4 16 10 6 16"></polygon>
+</svg>
+          Watch 1-min Reel
+        </button>
+</div>
+<!-- Fan Array Showcase of 5 Vertical Cards -->
+<div class="mt-16 sm:mt-20 max-w-6xl mx-auto relative px-2" data-purpose="fan-cards-showcase">
+<div class="flex items-end justify-center gap-2 sm:gap-3.5 md:gap-5 pb-10">
+<!-- Card 1: Japanese Vinyl Koi Poster (Left Outer) -->
+<div class="fan-card card-1 w-[18%] max-w-[170px] sm:max-w-[210px] aspect-[9/15] rounded-xl sm:rounded-2xl overflow-hidden shadow-card-tilt border border-black/5 bg-white shrink-0">
+<img alt="Japanese Vinyl Koi Poster" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxtXdUNLelZeoe5n7Dy64aX05zIEInBn52EbUKQqk3Fz6dmt143WUflht8Q7BxLXOERg4GzaRNuOfhzpryCKRaPmxShcRbYn1MDCe-eGdYZbPzu5VHyPU_bZznPhbtFo0MQ1VsEoMkveM8kMKlMZoBJ9i5HU15sE_B2VecClGB7DOgUEDgk-aKunY1vwcS93eUUE7GmFLlvkE8T6oLDTvGWvDGGJqciPhnk5HT4z_-2sGDdS4fTHbG3ajGdXr9BTJrow4"/>
+</div>
+<!-- Card 2: Cyclists on Green Hills (Left Inner) -->
+<div class="fan-card card-2 w-[18%] max-w-[170px] sm:max-w-[210px] aspect-[9/15] rounded-xl sm:rounded-2xl overflow-hidden shadow-card-tilt border border-black/5 bg-white shrink-0">
+<img alt="Cyclists on rolling green hills" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVzVVBhHz_y6SJWOwXN-mdTo35wpaMFeswCQ8yIFg2BuqxmKYz3-SFTulCQOtXTCpfEmdmHiy4MPSr-3v29ax2JJsWgM57lDgD59f0SatiUXzJiP6NierTh-A3D1dnjhVTM7tktAGetyY7K9peCfdfW-MWefClnWJXEyOQ0375-tiYWwbSbMsFew_RWOgQ1ecqYyCKulSjCnqno1SuyA8ZbQ7bw59CLUGPjNqoJG49XthAZdD69gyf5VwSs4H4hqiK8t8"/>
+</div>
+<!-- Card 3: Abstract Warm Waves (Center Master) -->
+<div class="fan-card card-3 w-[20%] max-w-[190px] sm:max-w-[235px] aspect-[9/15] rounded-xl sm:rounded-2xl overflow-hidden shadow-card-center border border-black/5 bg-white shrink-0">
+<img alt="Abstract retro warm waves" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkf5vxQWdqGGvuZHm4pbZ-SvgwxdP_dnyskEDKe8qJWGZcjxqUfXmFUOgSTDl1gLTavqbHirg3QUasiHx2oO2cFJOqlrSRLr2-rV1xcW4JZ4ezI-E60ggJDxdwmw32_OakEISVKVmYhT9HsGPS_bzkOGwQYKQZXKfRyWzYyzPSQchMGdfLROme2gxpqrzC0-ecQUx6vgDyTxIx795BkECTVkh6BLDoij9klVygKqyqAWyOaOrqVCVKt6mNz8LsRIR_0qQ"/>
+</div>
+<!-- Card 4: Red Sunset Over Ocean (Right Inner) -->
+<div class="fan-card card-4 w-[18%] max-w-[170px] sm:max-w-[210px] aspect-[9/15] rounded-xl sm:rounded-2xl overflow-hidden shadow-card-tilt border border-black/5 bg-white shrink-0">
+<img alt="Sunset orange horizon and deep sea" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJhuhnDk5MICMmEDbY141Ls2QEgTdycauzOZJONqNoGFDOWuzb2qjoJG1dzU95XnzaGYof-6EOYv9Ku4uRaZniS61UGeL2wvHoBMaHX2cMfiT4K4ZFvh5jX_vkp-qvsJ_F2qBWOH27mPYEx58Ub7BcqbPpWZWV9feQTgkqP8JVeqIgbuEfcyfLZ0r7yEX_JGAyEGDXPPNJm5QiV1rPwhISz_hCpNbR_MF7rzRZl3270FBY4OlrVC21kNHURMKC1xIRJGQ"/>
+</div>
+<!-- Card 5: Underwater Blue Fish (Right Outer) -->
+<div class="fan-card card-5 w-[18%] max-w-[170px] sm:max-w-[210px] aspect-[9/15] rounded-xl sm:rounded-2xl overflow-hidden shadow-card-tilt border border-black/5 bg-white shrink-0">
+<img alt="Deep blue school of fish" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC9e9l2EASbgP_AM_DGqVcz67J7EBUjz8-FXrC-5dNsuJxnC5qImSSKLyS9a66Ga73QDiMtSYkX6y_0wCJOtYmSeEWpG-vfapmUJJaSZ1tOsBOppDX3Hm01N4ugPxpHmQOJuzaDTuic5KapPZHQgANfNmMa3-EZjk_dJDF7fPxD82gzTlHPHG3YvdrwBraFNjoQY4BU4kHZblci0Awim-tI_p8jyCI9K6ihSqWreYgtEZDJO4DZ99YQ0Dmob5rrKiyF3M"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FeatureGridSection -->
+<section class="py-16 md:py-24 bg-white" data-purpose="studio-engine-section" id="features">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Section Tag & Heading -->
+<div class="mb-12">
+<span class="text-[11px] font-mono tracking-widest uppercase font-bold text-brand-red">Studio Engine</span>
+<h2 class="font-serif-headline text-4xl sm:text-5xl font-normal text-neutral-950 mt-2">
+          Built for precision. Tuned for<br class="hidden sm:inline"/> speed.
+        </h2>
+</div>
+<!-- Top Row: 2 Large Bionic Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+<!-- Large Card 1: Text-To-Cut -->
+<div class="lg:col-span-7 bg-[#F7F8F9] rounded-2xl p-7 border border-neutral-200/70 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="inline-block px-2.5 py-1 text-[11px] font-mono font-medium bg-[#FFEAE6] text-brand-red rounded">
+                Text-To-Cut
+              </span>
+<span class="text-[11px] font-mono text-neutral-400 tracking-wide uppercase">
+                Live Engine
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-neutral-900 tracking-tight mb-6">
+              Strike words. Video trims instantly.
+            </h3>
+<!-- Interactive Script Mockup -->
+<div class="bg-white rounded-xl p-5 border border-neutral-200/60 shadow-sm space-y-3 font-mono">
+<div class="flex items-center justify-between text-xs pb-1">
+<div class="flex items-center space-x-2 text-neutral-600 font-medium">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
+<span>Track 01_Audio.wav</span>
+</div>
+<span class="text-brand-red font-semibold text-[11px]">3 Words Cut (-2.1s)</span>
+</div>
+<p class="font-sans text-sm text-neutral-700 leading-relaxed pt-1">
+                “Capture the sheer scale of the landscape. 
+                <span class="bg-red-100 text-brand-red line-through px-1.5 py-0.5 rounded font-medium">Um, like basically,</span> 
+                morning sun crests over the ridge.”
+              </p>
+</div>
+</div>
+<!-- Waveform / Scrubber Bar -->
+<div class="mt-8 flex items-center space-x-3 pt-3">
+<span class="text-xs text-neutral-400">🎞️</span>
+<div class="h-3 flex-1 bg-neutral-200 rounded-full overflow-hidden flex">
+<div class="w-1/3 bg-blue-600 h-full"></div>
+<div class="w-1/12 bg-brand-red h-full"></div>
+<div class="w-1/4 bg-blue-600 h-full"></div>
+<div class="flex-1 bg-neutral-300 h-full"></div>
+</div>
+<span class="font-mono text-[11px] text-neutral-500 font-medium">00:14.28</span>
+</div>
+</div>
+<!-- Large Card 2: Smart Horizon -->
+<div class="lg:col-span-5 bg-[#F7F8F9] rounded-2xl p-7 border border-neutral-200/70 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="inline-block px-2.5 py-1 text-[11px] font-mono font-medium bg-[#E8F0FE] text-blue-600 rounded">
+                Smart Horizon
+              </span>
+<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xl font-semibold text-neutral-900 tracking-tight mb-6">
+              One master file. Every aspect.
+            </h3>
+<!-- Aspect ratio preview tiles -->
+<div class="grid grid-cols-3 gap-3 pt-2">
+<!-- 9:16 Reels -->
+<div class="bg-[#DFE7F2] rounded-lg p-3 text-center flex flex-col items-center justify-center h-28 border border-blue-100">
+<svg class="w-6 h-6 text-blue-700 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-mono font-medium text-neutral-600 mt-2">9:16 Reels</span>
+</div>
+<!-- 16:9 Cinema -->
+<div class="bg-[#E4ECF6] rounded-lg p-3 text-center flex flex-col items-center justify-center h-28 border border-blue-100">
+<svg class="w-6 h-6 text-blue-700 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 7h18M3 17h18M7 3v18M17 3v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-mono font-medium text-neutral-600 mt-2">16:9 Cinema</span>
+</div>
+<!-- 1:1 Feed -->
+<div class="bg-[#EAEFF5] rounded-lg p-3 text-center flex flex-col items-center justify-center h-28 border border-blue-100">
+<svg class="w-6 h-6 text-blue-700 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<rect height="18" rx="2" stroke-width="2" width="18" x="3" y="3"></rect>
+</svg>
+<span class="text-[10px] font-mono font-medium text-neutral-600 mt-2">1:1 Feed</span>
+</div>
+</div>
+</div>
+<div class="mt-6 text-center">
+<span class="font-mono text-[11px] text-blue-600 font-medium">Automatic Keyframe Smoothing</span>
+</div>
+</div>
+</div>
+<!-- Bottom Row: 3 Feature Mini Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- LUTs Card -->
+<div class="bg-[#F7F8F9] rounded-2xl p-6 border border-neutral-200/70">
+<div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+<path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"></path>
+</svg>
+</div>
+<h4 class="font-semibold text-neutral-900 text-base mb-4">Cinema LUTs</h4>
+<div class="flex flex-wrap gap-1.5 font-mono text-[10px] font-bold">
+<span class="bg-[#E97652] text-white px-2.5 py-1 rounded">KODAK</span>
+<span class="bg-[#2D9B87] text-white px-2.5 py-1 rounded">FUJI</span>
+<span class="bg-[#E45E48] text-white px-2.5 py-1 rounded">ARRI</span>
+<span class="bg-[#2B4B5B] text-white px-2.5 py-1 rounded">BLEACH</span>
+</div>
+</div>
+<!-- Smart Audio Ducking Card -->
+<div class="bg-[#F7F8F9] rounded-2xl p-6 border border-neutral-200/70">
+<div class="w-8 h-8 rounded-full bg-red-100 text-red-500 flex items-center justify-center mb-3">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h4 class="font-semibold text-neutral-900 text-base mb-3">Smart Audio Ducking</h4>
+<div class="h-9 bg-white rounded-lg border border-neutral-200/70 flex items-center justify-center px-4">
+<!-- Simulated audio wave stroke -->
+<svg class="w-full h-5 text-brand-red stroke-current fill-none stroke-[1.5]" preserveaspectratio="none" viewbox="0 0 160 20">
+<path d="M0,10 Q10,0 20,10 T40,10 T50,2 T60,18 T70,5 T80,15 T90,2 T100,18 T110,6 T120,14 T130,10 T140,10 T160,10"></path>
+</svg>
+</div>
+</div>
+<!-- Distributed Mesh Card -->
+<div class="bg-[#F7F8F9] rounded-2xl p-6 border border-neutral-200/70 flex flex-col justify-between">
+<div>
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+<path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.294a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"></path>
+</svg>
+</div>
+<h4 class="font-semibold text-neutral-900 text-base mb-2">Distributed Mesh</h4>
+</div>
+<div class="flex items-center justify-between text-xs font-mono bg-white p-2.5 rounded-lg border border-neutral-200/70">
+<span class="text-neutral-500 font-medium">4K Master</span>
+<span class="text-emerald-600 font-bold tracking-wider">Ready</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FeatureGridSection -->
+<!-- BEGIN: LiveStudioMockupSection -->
+<section class="py-12 bg-white" data-purpose="live-studio-mockup">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Mockup Section Header with View Switcher -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-neutral-100 gap-4">
+<div>
+<span class="text-[11px] font-mono tracking-widest uppercase font-bold text-brand-red">Live Studio Mockup</span>
+<h2 class="font-serif-headline text-3xl sm:text-4xl text-neutral-950 mt-1">
+            Designed like an instrument.
+          </h2>
+</div>
+<!-- Toggle Pill -->
+<div class="inline-flex p-1 bg-neutral-100 rounded-full border border-neutral-200/70 text-xs font-medium self-start sm:self-auto">
+<button class="px-3.5 py-1.5 rounded-full text-neutral-600 hover:text-neutral-900 transition">Standard View</button>
+<button class="px-3.5 py-1.5 rounded-full bg-brand-red text-white shadow-sm font-semibold">Director Timeline</button>
+</div>
+</div>
+<!-- Studio Timeline Container -->
+<div class="bg-[#F6F7F9] rounded-2xl border border-neutral-300/80 p-5 shadow-sm font-mono text-[11px]" data-purpose="timeline-workspace">
+<!-- Timeline Header Window Controls -->
+<div class="flex items-center justify-between pb-4 border-b border-neutral-200 mb-5">
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-full bg-[#FF5F56] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#27C93F] inline-block"></span>
+<span class="text-neutral-600 ml-3 text-xs font-semibold">Project: Voxcut_Sequence_Master.cut</span>
+</div>
+<div class="flex items-center space-x-3 text-xs">
+<span class="text-neutral-800 font-semibold tracking-wider">00:01:24:18</span>
+<span class="text-emerald-600 font-semibold">23.976 fps</span>
+</div>
+</div>
+<!-- Timecode Rulers -->
+<div class="grid grid-cols-6 text-neutral-400 pb-2 text-[10px] pl-16">
+<span>00:00</span>
+<span>00:15</span>
+<span>00:30</span>
+<span>00:45</span>
+<span>01:00</span>
+<span>01:15</span>
+</div>
+<!-- Track Lanes -->
+<div class="space-y-2.5">
+<!-- TXT Track (Peach) -->
+<div class="flex items-center">
+<span class="w-16 font-bold text-neutral-500 uppercase text-[10px]">TXT 01</span>
+<div class="flex-1 flex gap-2 overflow-hidden">
+<div class="bg-[#FCD8CD] text-[#842A16] px-3 py-1.5 rounded text-[10px] font-sans truncate w-1/4">
+                "Neon reflections in rain"
+              </div>
+<div class="bg-[#FCD8CD] text-[#842A16] px-3 py-1.5 rounded text-[10px] font-sans truncate w-1/3">
+                "The city awakens at midnight"
+              </div>
+<div class="bg-[#FCD8CD] text-[#842A16] px-3 py-1.5 rounded text-[10px] font-sans truncate w-1/3">
+                "Turn up the atmospheric score"
+              </div>
+</div>
+</div>
+<!-- VID Track (Cobalt Blue Cut Blocks) -->
+<div class="flex items-center">
+<span class="w-16 font-bold text-neutral-500 uppercase text-[10px]">VID 01</span>
+<div class="flex-1 flex gap-1.5 overflow-hidden">
+<div class="bg-[#2563EB] text-white px-3 py-2 rounded flex justify-between items-center w-3/12 font-medium">
+<span>Shot_01_Establish.mov</span>
+<span class="text-[9px] opacity-80">4K</span>
+</div>
+<div class="bg-[#1D4ED8] text-white px-3 py-2 rounded flex justify-between items-center w-5/12 font-medium">
+<span>Shot_02_Cyberpunk_Alley.mov</span>
+<span class="text-[9px] opacity-80">4K HDR</span>
+</div>
+<div class="bg-[#2563EB] text-white px-3 py-2 rounded flex justify-between items-center w-4/12 font-medium">
+<span>Shot_03_DollyOut.mov</span>
+<span class="text-[9px] opacity-80">4K</span>
+</div>
+</div>
+</div>
+<!-- AUD Track (Lime Green Voiceover) -->
+<div class="flex items-center">
+<span class="w-16 font-bold text-neutral-500 uppercase text-[10px]">AUD 01</span>
+<div class="flex-1 bg-[#A8E634] text-[#1E3B00] px-4 py-2 rounded flex justify-between items-center font-medium">
+<span>Voiceover_Narration_Master.wav</span>
+<span class="text-[9px] bg-black/10 px-2 py-0.5 rounded">Ducked -6dB</span>
+</div>
+</div>
+<!-- SFX Track (Lavender Synth Rumble) -->
+<div class="flex items-center">
+<span class="w-16 font-bold text-neutral-500 uppercase text-[10px]">SFX 02</span>
+<div class="flex-1 flex gap-2">
+<div class="w-1/2 bg-[#E1E0EA] text-neutral-700 px-3 py-1.5 rounded text-[10px] truncate">
+                Synthesizer_Rumble_Pad.aiff
+              </div>
+<div class="w-1/3 bg-[#E1E0EA] text-neutral-700 px-3 py-1.5 rounded text-[10px] truncate">
+                Rain_Thunder_Stereo.wav
+              </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: LiveStudioMockupSection -->
+<!-- BEGIN: CallToActionBanner -->
+<section class="py-16 md:py-20" data-purpose="cta-section" id="cta">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Gradient Card Container -->
+<div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#FFE7E0] via-[#F4F4FD] to-[#E9EEFC] border border-red-100/60 p-12 sm:p-20 text-center shadow-sm">
+<!-- Ambient decorative blur circles -->
+<div class="absolute -top-24 -left-24 w-72 h-72 bg-red-300/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-80 h-80 bg-blue-300/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-serif-headline text-4xl sm:text-5xl md:text-6xl text-neutral-950 font-normal leading-[1.12]">
+            Turn your raw ideas into master edits.
+          </h2>
+<div class="mt-8 flex justify-center">
+<a class="inline-flex items-center px-8 py-3.5 rounded-full text-sm font-semibold text-white bg-brand-red hover:bg-brand-darkRed shadow-glow-red hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5" href="#">
+              Start Creating Free
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CallToActionBanner -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full bg-white border-t border-neutral-100 py-10" data-purpose="main-footer">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Top Row: Logo & Nav Links -->
+<div class="flex flex-col sm:flex-row items-center justify-between pb-8 border-b border-neutral-100 gap-4">
+<!-- Logo -->
+<div class="flex items-center space-x-2.5">
+<img alt="Voxcut Logo Icon" class="w-6 h-6 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUEggyB6w1yRlq4inmPmflVRumX0bCSHnSDcs2E6OZKilHWO-nFHIu13J6RZ0iAisBRuwOk2HdjM69OoXjY10pHp4Vok-VD2RfIlmwzLgI9udDGgPSgI4YHo1GRrDTkhSBkdswu8deIALSTTtNoUEHWjsYYci3HKZzaEEScfFWO1SQjZHPYeDELmg3Be9wdm4T29_Af0CFZN5B4G3TWR4jiqAQJsfuNH5_5FsO-hbTb6A1Qmq5gMzEI2Bc_9gYl-7qUM0"/>
+<span class="font-bold text-lg tracking-tight text-neutral-900">Voxcut</span>
+<span class="text-[11px] font-mono text-neutral-400 bg-neutral-100 px-1.5 py-0.5 rounded">v2.4</span>
+</div>
+<!-- Links -->
+<nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-neutral-600">
+<a class="hover:text-neutral-950 transition" href="#features">Features</a>
+<a class="hover:text-neutral-950 transition" href="#showcase">Showcase</a>
+<a class="hover:text-neutral-950 transition" href="#templates">Templates</a>
+<a class="hover:text-neutral-950 transition" href="#pricing">Pricing</a>
+<a class="text-brand-red font-semibold hover:underline" href="#">Launch Studio</a>
+</nav>
+</div>
+<!-- Bottom Row: Copyright & Status -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-400 font-mono gap-3">
+<p>© 2025 Voxcut Technologies Inc. Precision Creative Suite. All rights reserved.</p>
+<div class="flex items-center space-x-2">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-neutral-600 font-medium">Global Render Node Active</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

@@ -1,0 +1,7 @@
+{
+  "name": "@voxcut/shared",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Pure Voxcut domain logic (time mapping, edits, transcript, captions) shared by backend and frontend."
+}

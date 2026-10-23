@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#fefcff", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#8d1500", "surface-container-lowest": "#ffffff", "background": "#f9f9ff", "on-secondary-fixed-variant": "#003ea8", "secondary": "#0051d5", "on-tertiary-fixed": "#102000", "surface-tint": "#b91e00", "on-error-container": "#93000a", "surface-variant": "#dce2f7", "surface-container-highest": "#dce2f7", "primary-fixed-dim": "#ffb4a5", "tertiary": "#3f6700", "outline": "#906f68", "primary-container": "#dc3313", "surface-container-high": "#e1e8fd", "surface-dim": "#d3daef", "outline-variant": "#e5beb5", "primary": "#b41d00", "secondary-container": "#316bf3", "on-primary": "#ffffff", "on-background": "#141b2b", "inverse-surface": "#293040", "surface-bright": "#f9f9ff", "surface-container": "#e9edff", "inverse-primary": "#ffb4a5", "on-primary-container": "#fffbff", "tertiary-container": "#518200", "error-container": "#ffdad6", "surface-container-low": "#f1f3ff", "on-secondary-fixed": "#00174b", "error": "#ba1a1a", "on-error": "#ffffff", "on-tertiary": "#ffffff", "on-surface": "#141b2b", "inverse-on-surface": "#edf0ff", "tertiary-fixed": "#acf847", "secondary-fixed": "#dbe1ff", "tertiary-fixed-dim": "#91db2a", "on-primary-fixed": "#3e0500", "on-tertiary-fixed-variant": "#304f00", "on-surface-variant": "#5c403a", "secondary-fixed-dim": "#b4c5ff", "primary-fixed": "#ffdad3", "surface": "#f9f9ff", "on-tertiary-container": "#f9ffea" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "3rem", "space-lg": "1.5rem", "space-2xs": "0.125rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-3xl": "6rem", "space-md": "1rem", "space-xs": "0.25rem", "space-2xl": "4rem", "gutter-sm": "1rem", "margin-mobile": "1.25rem", "space-xl": "2.5rem" }, "fontFamily": { "headline-lg": [ "Newsreader" ], "headline-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Newsreader" ], "label-timecode": [ "Space Grotesk" ], "headline-md": [ "Newsreader" ], "label-pill": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Newsreader" ], "body-lg": [ "Plus Jakarta Sans" ], "display-hero": [ "Newsreader" ], "body-sm": [ "Plus Jakarta Sans" ], "label-code": [ "Space Grotesk" ] }, "fontSize": { "headline-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "label-timecode": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "500" } ], "label-pill": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "display-hero-mobile": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "400" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "display-hero": [ "64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b border-surface-container"><div class="h-16 w-full px-6 flex items-center justify-between"><div class="flex items-center gap-6"><div class="flex items-center gap-3"><img alt="Neon Filmstrip V Icon.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V-ntE8wFdJfPoDWnlhcs_7tqfzfHlwqDP9JlEVuUb54aUhUPnX0bEl92-uhTEc3refTvZeXoXf-2Zx_0RvqKZftOko1sCx7op5z92WVbehe5t0c-TBaL9gQv9cXYbTYYVweZWL3lviDb-G3CnJNbF_tFoEEgjwY642OpqQTgOSdkZt1N9myoDjlSSNTW9NdtD48i4Ve0VTBM90TOGuAC6NZfR_58y3zPnS6pLQGC5pOAcEIMbGkx2AAzPbGQwZWcPPotdln07nuQ"/><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold">Voxcut</span><span class="px-2 py-0.5 rounded-full bg-surface-container font-label-code text-label-code text-on-surface-variant">v2.4</span></div><div class="h-4 w-px bg-surface-container hidden sm:block"></div><span class="hidden sm:inline font-label-pill text-label-pill uppercase text-primary font-semibold tracking-wider">Studio Engine</span></div><div class="flex items-center gap-4"><a class="hidden md:inline font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="features" href="#">Exit to Web</a><a class="px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-body-md text-body-md font-semibold shadow-[0_10px_25px_-4px_rgba(224,54,22,0.3)] hover:bg-primary transition-all duration-150 ease-in-out" data-path="signup" href="#">Start Free</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest border-r border-surface-container z-40 flex flex-col justify-between py-space-md"><div class="px-4 flex flex-col gap-6"><div class="flex items-center justify-between px-2 text-on-surface-variant"><span class="font-label-code text-label-code uppercase tracking-widest">Timeline Dock</span><span class="font-label-timecode text-label-timecode bg-surface-container px-2 py-0.5 rounded-full">4K 24p</span></div><nav class="flex flex-col gap-1" data-active-classes="bg-surface-container text-primary font-semibold"><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all bg-surface-container text-primary font-semibold" data-path="video-editor" href="#"><span class="material-symbols-outlined text-[20px]">movie_edit</span>Sequencer</a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="script-dock" href="#"><span class="material-symbols-outlined text-[20px]">article</span>Script &amp; Audio</a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="color-grading" href="#"><span class="material-symbols-outlined text-[20px]">palette</span>Color &amp; LUTs</a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="media-library" href="#"><span class="material-symbols-outlined text-[20px]">folder_open</span>Media Bin</a></nav></div><div class="px-4"><div class="p-3 rounded-lg bg-surface-container-low border border-surface-container flex flex-col gap-2"><div class="flex items-center justify-between"><span class="font-label-code text-label-code text-on-surface-variant">RAM CACHE</span><span class="font-label-code text-label-code text-tertiary font-semibold">78%</span></div><div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"><div class="bg-tertiary h-full w-[78%]"></div></div></div></div></aside><div class="pl-64"><main class="w-full pt-16 bg-surface-bright min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- TOP WORKFLOW CONTROL SUB-BAR -->
+<div class="w-full bg-surface-container-lowest px-6 py-2.5 flex items-center justify-between shadow-sm">
+<!-- Left: Project Name & Quick Aspect / History -->
+<div class="flex items-center gap-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">movie_edit</span>
+<span class="font-headline-sm text-body-md font-semibold text-on-surface tracking-tight">Voxcut_Coastline_Master.cut</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] cursor-pointer hover:text-on-surface">edit</span>
+</div>
+<div class="flex items-center bg-surface-container-low rounded-lg p-0.5">
+<button class="px-2.5 py-1 rounded text-on-surface font-label-code text-label-code font-bold bg-surface-container-lowest shadow-sm">16:9</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant font-label-code text-label-code hover:text-on-surface">9:16</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant font-label-code text-label-code hover:text-on-surface">1:1</button>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">undo</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">redo</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors text-secondary">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+</div>
+</div>
+<!-- Center: Primary Workflow Mode Navigation -->
+<div class="hidden xl:flex items-center gap-1 bg-surface-container-low p-1 rounded-full">
+<button class="px-4 py-1 rounded-full bg-surface-container-lowest text-primary font-body-md text-body-md font-semibold shadow-sm">Editing</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors">Color</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors">Audio</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors">Effects</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">auto_awesome</span>
+        AI Script
+      </button>
+</div>
+<!-- Right: Rendering & Export CTA -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">ProRes 422 HQ</span>
+</div>
+<button class="flex items-center gap-2 px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-body-md text-body-md font-semibold shadow-[0_10px_25px_-4px_rgba(224,54,22,0.3)] hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Export 4K</span>
+</button>
+</div>
+</div>
+<!-- STUDIO WORKSPACE: 3-PANEL EXPANSION -->
+<div class="grid grid-cols-12 gap-3 p-3 bg-surface-bright">
+<!-- LEFT COLUMN: SCRIPT & TRANSCRIPT BI-SYNC DOCK (3 Cols) -->
+<section class="col-span-12 lg:col-span-3 flex flex-col gap-3">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col h-[560px]">
+<!-- Header -->
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<h2 class="font-headline-sm text-body-md font-semibold text-on-surface">Script &amp; Transcript</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-code text-label-code font-bold">BI-SYNC</span>
+</div>
+<!-- Quick AI Remediation Actions -->
+<div class="flex items-center gap-2 pt-1 pb-3">
+<button class="flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-pill text-label-pill font-semibold shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+            Remove 6 Fillers
+          </button>
+<button class="flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-surface-container-high text-on-surface font-label-pill text-label-pill font-medium hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[14px]">content_cut</span>
+            Cut Silence
+          </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">search</span>
+</button>
+</div>
+<!-- Interactive Transcript Scroll Track -->
+<div class="flex-1 overflow-y-auto space-y-4 pr-1">
+<!-- Cue Block 1 -->
+<div class="p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-sm font-semibold text-on-surface">Elena Vance</span>
+<span class="font-label-code text-label-code text-on-surface-variant">Host</span>
+</div>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">00:00:12:04</span>
+</div>
+<p class="font-body-md text-body-sm leading-relaxed text-on-surface">
+              Welcome back to Frame &amp; Lens. Today we're dissecting the new color workflow for architectural cinema reels.
+            </p>
+</div>
+<!-- Cue Block 2 (Active Focus Playhead) -->
+<div class="p-3 rounded-xl bg-surface-container-lowest shadow-md">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-body-md text-body-sm font-bold text-primary">Elena Vance</span>
+<span class="font-label-code text-label-code uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed">LIVE</span>
+</div>
+<span class="font-label-timecode text-label-timecode font-bold text-primary">00:00:25:14</span>
+</div>
+<p class="font-body-md text-body-sm leading-relaxed text-on-surface">
+              When shooting during golden hour, 
+              <span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-semibold">contrast</span>
+              is tricky. <span class="line-through text-error decoration-2 opacity-60">uhm</span> You want to preserve the high dynamic range in the sky highlights without crushing the shadow textures in the foreground.
+            </p>
+<div class="mt-2.5 flex items-center justify-between bg-surface-container-high px-2.5 py-1.5 rounded-lg">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">smart_display</span>
+<span class="font-label-code text-label-code font-bold">B-Roll Cut Triggered</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">Duration: 4.8s</span>
+</div>
+</div>
+<!-- Cue Block 3 -->
+<div class="p-3 rounded-xl bg-surface-container-low opacity-75 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-sm font-semibold text-on-surface">Marcus Reed</span>
+<span class="font-label-code text-label-code text-on-surface-variant">Colorist</span>
+</div>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">00:00:34:00</span>
+</div>
+<p class="font-body-md text-body-sm leading-relaxed text-on-surface">
+              Exactly. And with Reelix's unified color engine, we apply Kodak 250D emulation straight across the master timeline with 
+              <span class="line-through text-error opacity-60">like</span> zero GPU lag.
+            </p>
+</div>
+</div>
+<!-- Script Mic Action Bar -->
+<div class="pt-3 mt-auto flex items-center justify-between">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary font-body-sm text-body-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+<span>Record Voiceover</span>
+</button>
+<span class="font-label-code text-label-code text-on-surface-variant">842 words</span>
+</div>
+</div>
+</section>
+<!-- CENTER COLUMN: PREVIEW MONITOR (6 Cols) -->
+<section class="col-span-12 lg:col-span-6 flex flex-col gap-3">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col h-[560px]">
+<!-- Viewport Top Toolbar -->
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-3">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-code text-label-code uppercase tracking-wider text-on-surface font-semibold">PREVIEW (16:9)</span>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">4K UHD • 23.976 fps</span>
+<span class="hidden sm:inline font-label-code text-label-code text-tertiary">Rec.709 Color Space</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[18px]">grid_4x4</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[18px]">aspect_ratio</span>
+</button>
+<span class="font-label-code text-label-code text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded">Fit 52%</span>
+</div>
+</div>
+<!-- Dynamic Visual Monitor Canvas -->
+<div class="relative flex-1 rounded-xl bg-inverse-surface overflow-hidden flex items-center justify-center shadow-inner">
+<!-- Image Layer referencing specified inspiration wave art -->
+<img alt="Color Wave Canvas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJys1T4LaLPoO7X19I-QDDdUqmR0BakBA35JUVNLoDJMtEuUArS_vz0-yXcefRMJ4yGIVacridodBloCgq07NHudUtMfA2q0wqz1KAu69tNkubiRxbZUTnJAmuJFZRXhVDNRGfNg-RucpWeuUeKaRDyYFmlVLU0QGRKKh9W1EVKXIyPqyl6caTmsJb6e49KoM6XiYfjgV2A96ogFugXg7JAHKxyeqFXmjiGLTTcwwcC2VjPG-tj9dTubBZbr11DjMJeFI"/>
+<!-- Aspect Overlays & Cinema Guides -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<!-- Safe Margin Bounding Box -->
+<div class="w-[84%] h-[82%] relative">
+<!-- Bounding Box Line -->
+<div class="absolute inset-0 bg-secondary/10"></div>
+<!-- Transform Handles -->
+<span class="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 rounded-full bg-surface-container-lowest shadow-md"></span>
+<span class="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full bg-surface-container-lowest shadow-md"></span>
+<span class="absolute -bottom-1.5 -left-1.5 w-3.5 h-3.5 rounded-full bg-surface-container-lowest shadow-md"></span>
+<span class="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 rounded-full bg-surface-container-lowest shadow-md"></span>
+<!-- Clip Label Anchor Tag -->
+<div class="absolute top-3 left-3 bg-inverse-surface/85 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2 text-inverse-on-surface shadow-md">
+<span class="material-symbols-outlined text-secondary-fixed text-[14px]">crop_free</span>
+<span class="font-label-code text-label-code text-surface-container-lowest">Voxcut Clip: Coastline_Cinema_4K.mov (100%)</span>
+</div>
+</div>
+</div>
+<!-- Top-Right Floating Monitor Mode Badges -->
+<div class="absolute top-4 right-4 flex items-center gap-1.5 bg-surface-container-lowest/90 backdrop-blur-md p-1 rounded-lg shadow-sm pointer-events-auto">
+<button class="px-2.5 py-1 rounded text-primary font-label-code text-label-code font-bold bg-surface-container-low">16:9 Cinema</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant font-label-code text-label-code hover:text-on-surface">9:16 Reel</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant font-label-code text-label-code hover:text-on-surface">1:1 Square</button>
+</div>
+<!-- Bottom Floating Transport Controls -->
+<div class="absolute bottom-4 inset-x-0 flex items-center justify-center pointer-events-none">
+<div class="flex items-center gap-4 bg-surface-container-lowest/90 backdrop-blur-md px-6 py-2 rounded-full shadow-lg pointer-events-auto">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">skip_previous</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">fast_rewind</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-md hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">fast_forward</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">skip_next</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: INSPECTOR & COLOR GRADING SUITE (3 Cols) -->
+<section class="col-span-12 lg:col-span-3 flex flex-col gap-3">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col h-[560px] overflow-y-auto">
+<!-- Tabbed Header -->
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-3">
+<button class="font-headline-sm text-body-md font-bold text-primary">Inspect</button>
+<button class="font-headline-sm text-body-md font-normal text-on-surface-variant hover:text-on-surface">Media</button>
+<button class="font-headline-sm text-body-md font-normal text-on-surface-variant hover:text-on-surface">LUTs</button>
+<button class="font-headline-sm text-body-md font-normal text-on-surface-variant hover:text-on-surface">Audio</button>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_horiz</span>
+</div>
+<div class="space-y-4 pt-2">
+<!-- Section 1: Video Transform Scrubber -->
+<div class="p-3 bg-surface-container-low rounded-xl flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-sm font-semibold text-on-surface">Video Transform</span>
+<button class="font-label-code text-label-code text-secondary hover:underline">Reset</button>
+</div>
+<!-- Scale Slider -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between font-label-code text-label-code text-on-surface-variant">
+<span>Scale (%)</span>
+<span class="font-bold text-on-surface">114.0%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative flex items-center">
+<div class="bg-primary h-full w-[60%] rounded-full"></div>
+<div class="w-4 h-4 rounded-full bg-surface-container-lowest shadow-md -ml-2"></div>
+</div>
+</div>
+<!-- Position Controls -->
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container-lowest p-2 rounded-lg">
+<span class="font-label-code text-label-code text-on-surface-variant block">Pos X</span>
+<span class="font-label-code text-body-sm font-semibold text-on-surface">0 px</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg">
+<span class="font-label-code text-label-code text-on-surface-variant block">Pos Y</span>
+<span class="font-label-code text-body-sm font-semibold text-on-surface">+18 px</span>
+</div>
+</div>
+<!-- Opacity & Blend -->
+<div class="flex justify-between items-center pt-1 font-label-code text-label-code text-on-surface-variant">
+<span>Opacity / Blend</span>
+<span class="font-semibold text-on-surface">100%</span>
+</div>
+</div>
+<!-- Section 2: 3-Way Color Balance Wheels -->
+<div class="p-3 bg-surface-container-low rounded-xl flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-sm font-semibold text-on-surface">3-Way Color Balance</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">tune</span>
+</div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<!-- Shadows Wheel -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-code text-[10px] tracking-wider text-on-surface-variant uppercase">SHADOWS</span>
+<div class="w-14 h-14 rounded-full bg-surface-container-lowest flex items-center justify-center relative shadow-inner">
+<div class="w-8 h-8 rounded-full bg-secondary/15 flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-sm"></span>
+</div>
+</div>
+<span class="font-label-code text-[11px] text-on-surface font-medium">Lift -0.04</span>
+</div>
+<!-- Midtones Wheel -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-code text-[10px] tracking-wider text-on-surface-variant uppercase">MIDTONES</span>
+<div class="w-14 h-14 rounded-full bg-surface-container-lowest flex items-center justify-center relative shadow-inner">
+<div class="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-primary shadow-sm"></span>
+</div>
+</div>
+<span class="font-label-code text-[11px] text-on-surface font-medium">Gamma +0.08</span>
+</div>
+<!-- Highlights Wheel -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-code text-[10px] tracking-wider text-on-surface-variant uppercase">HIGHLIGHTS</span>
+<div class="w-14 h-14 rounded-full bg-surface-container-lowest flex items-center justify-center relative shadow-inner">
+<div class="w-8 h-8 rounded-full bg-tertiary/15 flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary shadow-sm"></span>
+</div>
+</div>
+<span class="font-label-code text-[11px] text-on-surface font-medium">Gain +0.02</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Creative LUT Presets -->
+<div class="p-3 bg-surface-container-low rounded-xl flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-sm font-semibold text-on-surface">Creative LUT Presets</span>
+<button class="font-label-code text-label-code text-primary font-semibold hover:underline">Import .cube</button>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- LUT Card 1 Active -->
+<div class="flex flex-col gap-1 p-1.5 rounded-lg bg-surface-container-lowest shadow-sm cursor-pointer">
+<img class="w-full h-11 object-cover rounded" data-alt="Cinematic still portrait film look with warm Kodak 250D emulation, delicate grain and rich skin tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRWqwEcDknG_QAglG2gw_8oSQPSIagzBnHEJzKsz2CSyryIAi6_lby4XwkOJKr85Hk7wYWkrTWaXOF4wf7cpPEgvn836iVtiIQccvwoV8RTwiWP6CkJ-vEkZxEuynpO64446fyhkHSvYLCSp3yopE2jg7GDt3dSeqwrzzkUVMvvsj5yXsw9FZ2SYUXpbMd-FxzsYUK9PqFHWJ_qcO_-4epXpEh8b5J_ZFyi9LS2xGGHUalHnXHfhuYZQ"/>
+<div class="flex flex-col">
+<span class="font-label-code text-[10px] font-bold text-on-surface truncate">Kodak 250D</span>
+<span class="font-label-code text-[9px] text-primary">Active (80%)</span>
+</div>
+</div>
+<!-- LUT Card 2 -->
+<div class="flex flex-col gap-1 p-1.5 rounded-lg bg-surface-container-lowest opacity-75 hover:opacity-100 transition-opacity cursor-pointer">
+<img class="w-full h-11 object-cover rounded" data-alt="Dramatic high dynamic range sunset over ocean waves with vibrant teal water and vivid deep orange horizon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUBWrHoONaSebO2-Qm-3YMAydqQDPZCajek_AEZixoc3SfOFnuTGfD6SUbpCKSJIz5BZkwFGqsGxWd3u1L7zX6DGH2qMg-Wh3UBntzeReEHpsRFT66HQ2XCoT_MClP0SezPb1zVH7Xs-zXY3Zp6pO8J8Kt7o-r4pZSpnqxQl2OmPPa2G0Jv9U1qqNXTFoRVNTRg_QPMJs-17-sYAoBZDx5EVZP-kmxxGYk1LFbjtjqWGokwIv1DauSBA"/>
+<div class="flex flex-col">
+<span class="font-label-code text-[10px] font-bold text-on-surface truncate">Teal &amp; Orange</span>
+<span class="font-label-code text-[9px] text-on-surface-variant">Standard</span>
+</div>
+</div>
+<!-- LUT Card 3 -->
+<div class="flex flex-col gap-1 p-1.5 rounded-lg bg-surface-container-lowest opacity-75 hover:opacity-100 transition-opacity cursor-pointer">
+<img class="w-full h-11 object-cover rounded" data-alt="Moody architectural interior in high-contrast monochromatic black and white film look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMECBcxF_Eg7uYmVplofk3q0NrNEqVKeRqlK0V_J-nh2Inebh3Mbi8J9mrrbdu7qkcDSAuWEienCTWZko5JSnqSr80ar0lghrf_QBZ2v6eOrEjI7wPCctAevdthrLu6CtqFI_9tAeqo62H0-e8x6WsLsMv8qNl4v35Y5CvxlPw4AjHW6OmM_sGa0LXVG0fFReKHeZfrCjfGLcSl9Z5Wg2C4gWGFGHgtCStAFZ0zm5LPTlLVdkBjrlM_Q"/>
+<div class="flex flex-col">
+<span class="font-label-code text-[10px] font-bold text-on-surface truncate">Mono Silver</span>
+<span class="font-label-code text-[9px] text-on-surface-variant">B&amp;W Tone</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- BOTTOM MULTI-TRACK MASTER TIMELINE -->
+<div class="w-full bg-surface-container-lowest px-4 py-3 shadow-lg flex flex-col gap-2">
+<!-- Timeline Control Bar & Timecode Markers -->
+<div class="flex items-center justify-between pb-2">
+<!-- Tool Palette -->
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface font-semibold hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">content_cut</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">splitscreen</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">view_timeline</span>
+</button>
+</div>
+<!-- Main Timecode Display -->
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-timecode text-headline-sm font-bold text-primary tracking-wider">00:00:25:14</span>
+</div>
+<!-- Timeline Zoom & Scrub Scrubber -->
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">zoom_out</span>
+<div class="w-28 bg-surface-container h-1.5 rounded-full relative flex items-center">
+<div class="bg-primary h-full w-[65%] rounded-full"></div>
+<div class="w-3.5 h-3.5 rounded-full bg-surface-container-lowest shadow-md -ml-1.5"></div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">zoom_in</span>
+<span class="font-label-code text-label-code text-on-surface-variant font-semibold">85%</span>
+</div>
+</div>
+<!-- Timeline Tracks Canvas Container -->
+<div class="relative w-full bg-surface-container-low rounded-xl p-2 flex flex-col gap-1.5 overflow-x-auto shadow-inner">
+<!-- Time Ruler Header -->
+<div class="flex items-center text-on-surface-variant font-label-timecode text-label-timecode pb-1 pl-28">
+<div class="flex-1 flex justify-between pr-8">
+<span>00:00:00</span>
+<span>00:00:05</span>
+<span>00:00:10</span>
+<span>00:00:15</span>
+<span>00:00:20</span>
+<span class="text-primary font-bold">00:00:25</span>
+<span>00:00:30</span>
+<span>00:00:35</span>
+<span>00:00:40</span>
+</div>
+</div>
+<!-- Vertical Playhead Line across all tracks -->
+<div class="absolute top-2 bottom-2 left-[58%] z-30 pointer-events-none flex flex-col items-center">
+<!-- Playhead Diamond Indicator -->
+<div class="w-3.5 h-3.5 bg-primary rotate-45 -mt-1.5 shadow-md"></div>
+<div class="w-0.5 flex-1 bg-primary"></div>
+</div>
+<!-- TRACK 1: V3 Titles -->
+<div class="flex items-center h-10 w-full gap-2">
+<div class="w-24 shrink-0 flex items-center justify-between px-2 bg-surface-container-lowest rounded-lg h-full">
+<span class="font-label-code text-label-code font-bold text-primary">V3 Titles</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+<span class="material-symbols-outlined text-[14px]">lock_open</span>
+</div>
+</div>
+<div class="flex-1 h-full bg-surface-container-lowest/60 rounded-lg relative overflow-hidden flex items-center">
+<!-- Clip Block -->
+<div class="absolute left-[45%] w-[26%] h-8 rounded-md bg-primary-fixed text-on-primary-fixed flex items-center px-3 justify-between shadow-sm">
+<div class="flex items-center gap-1.5 truncate">
+<span class="material-symbols-outlined text-[14px]">title</span>
+<span class="font-label-code text-label-code font-bold truncate">Title_LowerThird_ElenaVance.mov</span>
+</div>
+<span class="font-label-code text-[10px] text-on-primary-fixed-variant font-semibold">06:10</span>
+</div>
+</div>
+</div>
+<!-- TRACK 2: V2 B-Roll -->
+<div class="flex items-center h-10 w-full gap-2">
+<div class="w-24 shrink-0 flex items-center justify-between px-2 bg-surface-container-lowest rounded-lg h-full">
+<span class="font-label-code text-label-code font-bold text-secondary">V2 B-Roll</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+<span class="material-symbols-outlined text-[14px]">lock_open</span>
+</div>
+</div>
+<div class="flex-1 h-full bg-surface-container-lowest/60 rounded-lg relative overflow-hidden flex items-center">
+<!-- Clip 1 -->
+<div class="absolute left-[15%] w-[20%] h-8 rounded-md bg-secondary-fixed text-on-secondary-fixed flex items-center px-3 gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">crop_original</span>
+<span class="font-label-code text-label-code font-semibold truncate">Aerial_Coastline.mp4</span>
+</div>
+<!-- Clip 2 Under Scrub Head -->
+<div class="absolute left-[52%] w-[28%] h-8 rounded-md bg-secondary-fixed text-on-secondary-fixed flex items-center px-3 justify-between shadow-sm">
+<div class="flex items-center gap-1.5 truncate">
+<span class="material-symbols-outlined text-[14px]">movie</span>
+<span class="font-label-code text-label-code font-bold truncate">Studio_CloseUp_4K.mov</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-secondary text-on-secondary font-label-code text-[9px] font-bold">LUT: 250D</span>
+</div>
+</div>
+</div>
+<!-- TRACK 3: V1 Master Video Track -->
+<div class="flex items-center h-11 w-full gap-2">
+<div class="w-24 shrink-0 flex items-center justify-between px-2 bg-surface-container-lowest rounded-lg h-full">
+<span class="font-label-code text-label-code font-bold text-secondary">V1 Master</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+<span class="material-symbols-outlined text-[14px]">lock_open</span>
+</div>
+</div>
+<div class="flex-1 h-full bg-surface-container-lowest/60 rounded-lg relative overflow-hidden flex items-center">
+<!-- Full Master Clip A -->
+<div class="absolute left-0 w-[42%] h-9 rounded-md bg-secondary text-on-secondary flex items-center px-3 justify-between shadow-sm">
+<span class="font-label-code text-label-code font-bold truncate">A_Cam_Host_Take02.mp4</span>
+<span class="font-label-code text-[10px] text-surface-container-highest font-mono">4K 24p</span>
+</div>
+<!-- Transition arrow badge -->
+<div class="absolute left-[42.5%] z-10 w-4 h-4 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[12px] text-secondary">arrow_forward</span>
+</div>
+<!-- Master Clip B -->
+<div class="absolute left-[44%] w-[55%] h-9 rounded-md bg-secondary text-on-secondary flex items-center px-3 justify-between shadow-sm">
+<span class="font-label-code text-label-code font-bold truncate">A_Cam_Host_Take03_Extended.mp4</span>
+<span class="font-label-code text-[10px] text-surface-container-highest font-mono">4K 24p</span>
+</div>
+</div>
+</div>
+<!-- TRACK 4: A1 Voice Dialogue Audio Track with Waveform Visual -->
+<div class="flex items-center h-10 w-full gap-2">
+<div class="w-24 shrink-0 flex items-center justify-between px-2 bg-surface-container-lowest rounded-lg h-full">
+<span class="font-label-code text-label-code font-bold text-tertiary">A1 Voice</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="font-label-code text-[10px] font-bold text-tertiary">M</span>
+<span class="font-label-code text-[10px] font-bold text-on-surface-variant">S</span>
+</div>
+</div>
+<div class="flex-1 h-full bg-surface-container-lowest/60 rounded-lg relative overflow-hidden flex items-center">
+<!-- Dialogue Audio Strip in Lime Green with Waveform SVG -->
+<div class="absolute left-0 w-[95%] h-8 rounded-md bg-tertiary-fixed text-on-tertiary-fixed flex items-center px-2 gap-2 shadow-sm overflow-hidden">
+<div class="flex items-center gap-1 shrink-0 z-10">
+<span class="material-symbols-outlined text-[14px]">graphic_eq</span>
+<span class="font-label-code text-label-code font-bold truncate">Elena_Lavalier_Clean.wav</span>
+</div>
+<!-- Dynamic Inline Audio Waveform Vector -->
+<svg class="w-full h-6 text-on-tertiary-fixed-variant opacity-85" fill="currentColor" preserveaspectratio="none" viewbox="0 0 500 24">
+<path d="M0,12 L10,8 L20,16 L30,4 L40,20 L50,10 L60,14 L70,2 L80,22 L90,12 L100,6 L110,18 L120,9 L130,15 L140,3 L150,21 L160,11 L170,13 L180,5 L190,19 L200,12 L210,7 L220,17 L230,8 L240,16 L250,4 L260,20 L270,12 L280,6 L290,18 L300,10 L310,14 L320,2 L330,22 L340,12 L350,5 L360,19 L370,11 L380,13 L390,4 L400,20 L410,12 L420,7 L430,17 L440,9 L450,15 L460,3 L470,21 L480,12 L490,6 L500,12" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Status Footer -->
+<div class="flex items-center justify-between text-on-surface-variant font-label-code text-label-code pt-1 px-1">
+<div class="flex items-center gap-4">
+<span>Timeline In: <strong class="text-on-surface">00:00:00:00</strong></span>
+<span>Timeline Out: <strong class="text-on-surface">00:02:40:00</strong></span>
+<span class="text-tertiary font-semibold">Auto-Save 1m ago</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+          Render Cache: 100% Up To Date
+        </span>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

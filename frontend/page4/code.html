@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#fefcff", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#8d1500", "surface-container-lowest": "#ffffff", "background": "#f9f9ff", "on-secondary-fixed-variant": "#003ea8", "secondary": "#0051d5", "on-tertiary-fixed": "#102000", "surface-tint": "#b91e00", "on-error-container": "#93000a", "surface-variant": "#dce2f7", "surface-container-highest": "#dce2f7", "primary-fixed-dim": "#ffb4a5", "tertiary": "#3f6700", "outline": "#906f68", "primary-container": "#dc3313", "surface-container-high": "#e1e8fd", "surface-dim": "#d3daef", "outline-variant": "#e5beb5", "primary": "#b41d00", "secondary-container": "#316bf3", "on-primary": "#ffffff", "on-background": "#141b2b", "inverse-surface": "#293040", "surface-bright": "#f9f9ff", "surface-container": "#e9edff", "inverse-primary": "#ffb4a5", "on-primary-container": "#fffbff", "tertiary-container": "#518200", "error-container": "#ffdad6", "surface-container-low": "#f1f3ff", "on-secondary-fixed": "#00174b", "error": "#ba1a1a", "on-error": "#ffffff", "on-tertiary": "#ffffff", "on-surface": "#141b2b", "inverse-on-surface": "#edf0ff", "tertiary-fixed": "#acf847", "secondary-fixed": "#dbe1ff", "tertiary-fixed-dim": "#91db2a", "on-primary-fixed": "#3e0500", "on-tertiary-fixed-variant": "#304f00", "on-surface-variant": "#5c403a", "secondary-fixed-dim": "#b4c5ff", "primary-fixed": "#ffdad3", "surface": "#f9f9ff", "on-tertiary-container": "#f9ffea" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "3rem", "space-lg": "1.5rem", "space-2xs": "0.125rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-3xl": "6rem", "space-md": "1rem", "space-xs": "0.25rem", "space-2xl": "4rem", "gutter-sm": "1rem", "margin-mobile": "1.25rem", "space-xl": "2.5rem" }, "fontFamily": { "headline-lg": [ "Newsreader" ], "headline-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Newsreader" ], "label-timecode": [ "Space Grotesk" ], "headline-md": [ "Newsreader" ], "label-pill": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Newsreader" ], "body-lg": [ "Plus Jakarta Sans" ], "display-hero": [ "Newsreader" ], "body-sm": [ "Plus Jakarta Sans" ], "label-code": [ "Space Grotesk" ] }, "fontSize": { "headline-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "label-timecode": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "500" } ], "label-pill": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "display-hero-mobile": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "400" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "display-hero": [ "64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b border-surface-container"><div class="h-16 w-full px-margin-mobile md:px-margin flex items-center justify-between"><div class="flex items-center gap-6"><div class="flex items-center gap-3"><img alt="Neon Filmstrip V Icon.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V-ntE8wFdJfPoDWnlhcs_7tqfzfHlwqDP9JlEVuUb54aUhUPnX0bEl92-uhTEc3refTvZeXoXf-2Zx_0RvqKZftOko1sCx7op5z92WVbehe5t0c-TBaL9gQv9cXYbTYYVweZWL3lviDb-G3CnJNbF_tFoEEgjwY642OpqQTgOSdkZt1N9myoDjlSSNTW9NdtD48i4Ve0VTBM90TOGuAC6NZfR_58y3zPnS6pLQGC5pOAcEIMbGkx2AAzPbGQwZWcPPotdln07nuQ"/><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold">Voxcut</span><span class="px-2 py-0.5 rounded-full bg-surface-container font-label-code text-label-code text-on-surface-variant">v2.4</span></div><nav class="hidden lg:flex items-center gap-8" data-active-classes="text-primary font-semibold"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="features" href="#">Features</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="showcase" href="#">Showcase</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="templates" href="#">Templates</a><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="pricing" href="#">Pricing</a><div class="h-4 w-px bg-surface-container"></div><a class="font-body-md text-body-md text-secondary hover:text-secondary-container transition-colors flex items-center gap-1.5" data-path="video-editor" href="#">Video Editor</a></nav></div><div class="flex items-center gap-4"><a class="px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-body-md text-body-md font-semibold shadow-[0_10px_25px_-4px_rgba(224,54,22,0.3)] hover:bg-primary transition-all duration-150 ease-in-out" data-path="signup" href="#">Start Free</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface-bright min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-margin-mobile md:px-margin py-space-xl md:py-space-2xl">
+<!-- Top Editorial Header & Status Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl">
+<div class="flex flex-col max-w-2xl">
+<div class="flex items-center gap-3 mb-space-xs">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">Engine v2.4 / WebCodecs Pipeline</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-pill text-label-pill">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            GPU Direct Acceleration Active
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Export &amp; Delivery Studio</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Render client-ready files across every platform with zero quality loss.</p>
+</div>
+<!-- Quick Session Indicator -->
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-2.5 rounded-xl shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-on-surface-variant">COLOR PIPELINE</span>
+<span class="font-label-timecode text-label-timecode text-on-surface font-semibold">ACEScc • Rec.709-A Master</span>
+</div>
+<div class="w-px h-8 bg-surface-container"></div>
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-on-surface-variant">TARGET LATENCY</span>
+<span class="font-label-timecode text-label-timecode text-tertiary font-semibold">Ultra-Low 4.2x WASM</span>
+</div>
+</div>
+</div>
+<!-- Main Studio Split Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- LEFT COLUMN: Export Configuration -->
+<div class="lg:col-span-6 flex flex-col gap-space-lg">
+<!-- SECTION 1: Resolution Selector -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">aspect_ratio</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Target Resolution</h2>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">PRORES NATIVE DCI</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm" id="resSelector">
+<!-- 4K UHD -->
+<label class="group relative flex flex-col p-3.5 rounded-lg bg-surface-container-high cursor-pointer transition-all duration-150 ease-in-out shadow-sm ring-2 ring-primary">
+<input checked="" class="sr-only" name="resolution" type="radio" value="4k"/>
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">4K UHD</span>
+<span class="px-1.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-code text-[10px]">MASTER</span>
+</div>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">3840 × 2160</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2">DCI Archival Master</span>
+</label>
+<!-- 1080p FHD -->
+<label class="group relative flex flex-col p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all duration-150 ease-in-out">
+<input class="sr-only" name="resolution" type="radio" value="1080p"/>
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">1080p FHD</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-code text-[10px]">OPTIMAL</span>
+</div>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">1920 × 1080</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2">Recommended for Web</span>
+</label>
+<!-- 720p HD -->
+<label class="group relative flex flex-col p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all duration-150 ease-in-out">
+<input class="sr-only" name="resolution" type="radio" value="720p"/>
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">720p HD</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-code text-[10px]">FAST</span>
+</div>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">1280 × 720</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2">Rapid Client Screener</span>
+</label>
+</div>
+</div>
+<!-- SECTION 2: Multi-Aspect Auto-Render -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">splitscreen</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Multi-Aspect Auto-Render</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-pill text-label-pill">AI Subject Safe-Zone Lock</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<!-- 16:9 -->
+<label class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-3">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary accent-primary" type="checkbox"/>
+<div class="w-7 h-4 rounded-xs bg-on-background/15 flex items-center justify-center font-label-code text-[9px] text-on-background">16:9</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">16:9 Widescreen</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">YouTube, Vimeo, Cinematic Master, OTT</span>
+</div>
+</div>
+<span class="font-label-timecode text-label-timecode text-secondary font-medium">Auto-Reframed</span>
+</label>
+<!-- 9:16 -->
+<label class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-3">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary accent-primary" type="checkbox"/>
+<div class="w-4 h-7 rounded-xs bg-on-background/15 flex items-center justify-center font-label-code text-[9px] text-on-background">9:16</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">9:16 Vertical Story</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">TikTok, Instagram Reels, YouTube Shorts</span>
+</div>
+</div>
+<span class="font-label-timecode text-label-timecode text-tertiary font-medium">Subject Centered</span>
+</label>
+<!-- 1:1 -->
+<label class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary accent-primary" type="checkbox"/>
+<div class="w-5 h-5 rounded-xs bg-on-background/15 flex items-center justify-center font-label-code text-[9px] text-on-background">1:1</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">1:1 Square Feed</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">LinkedIn, Instagram Feed Carousel</span>
+</div>
+</div>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant font-medium">Standard Crop</span>
+</label>
+</div>
+</div>
+<!-- SECTION 3: Codec & Container Delivery -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">movie_edit</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Codec &amp; Color Bit-Depth</h2>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">HARDWARE ENCODED</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<button class="flex flex-col p-3 rounded-lg bg-surface-container-high text-left ring-2 ring-secondary shadow-sm" type="button">
+<span class="font-body-md text-body-md font-bold text-on-surface">Apple ProRes 422</span>
+<span class="font-label-code text-[11px] text-secondary mt-1">10-Bit • 4:2:2 HQ</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2">Zero artifact master archive</span>
+</button>
+<button class="flex flex-col p-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors" type="button">
+<span class="font-body-md text-body-md font-semibold text-on-surface">H.264 WebCodecs</span>
+<span class="font-label-code text-[11px] text-on-surface-variant mt-1">8-Bit • Constant CRF 18</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2">Maximum player compatibility</span>
+</button>
+<button class="flex flex-col p-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors" type="button">
+<span class="font-body-md text-body-md font-semibold text-on-surface">AV1 Modern Web</span>
+<span class="font-label-code text-[11px] text-on-surface-variant mt-1">10-Bit • Next-Gen SVT</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2">50% lower weight at 4K</span>
+</button>
+</div>
+</div>
+<!-- SECTION 4: Subtitle Burn-In Preset -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">subtitles</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Smart Subtitle Burn-In</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sync spoken speech via WhisperX transcript</span>
+</div>
+</div>
+<!-- Modern Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="grid grid-cols-3 gap-space-sm pt-2">
+<button class="py-2.5 px-3 rounded-lg bg-surface-container-high text-on-surface font-headline-sm text-body-sm text-center ring-2 ring-primary" type="button">
+              Cinematic Serif
+            </button>
+<button class="py-2.5 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-headline-sm text-body-sm text-center" type="button">
+              Neon Pill Box
+            </button>
+<button class="py-2.5 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-headline-sm text-body-sm text-center" type="button">
+              Minimal Clean
+            </button>
+</div>
+</div>
+<!-- Render Call To Action -->
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full py-4 px-6 rounded-full bg-primary-container text-on-primary-container font-headline-sm text-body-lg font-bold flex items-center justify-center gap-3 shadow-[0_10px_25px_-4px_rgba(224,54,22,0.3)] hover:bg-primary transition-all duration-150 transform active:scale-[0.99]" id="startRenderBtn" type="button">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+<span>Render All Formats (4K Master + Vertical)</span>
+</button>
+<div class="flex items-center justify-center gap-4 text-center">
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">ESTIMATED EXPORT TIME: ~28 SECONDS</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant">TOTAL PACKAGE SIZE: ~322 MB</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Live Output Monitor & Progress -->
+<div class="lg:col-span-6 flex flex-col gap-space-lg">
+<!-- SECTION 1: Monitor Container with Dynamic Framing Lines -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between px-2 pt-1">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-code text-label-code font-semibold text-primary uppercase">Direct Render Stream</span>
+<span class="font-label-timecode text-label-timecode text-on-surface-variant font-medium">TC 00:04:18:12</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2 py-0.5 rounded bg-surface-container font-label-code text-[11px] text-on-surface hover:bg-surface-container-high">Safe Zones: ON</button>
+<button class="px-2 py-0.5 rounded bg-surface-container font-label-code text-[11px] text-on-surface hover:bg-surface-container-high">Color LUT: KODAK 2383</button>
+</div>
+</div>
+<!-- Video Viewport Card -->
+<div class="relative w-full aspect-video rounded-lg overflow-hidden bg-on-background shadow-inner flex items-center justify-center">
+<!-- Source Background Image: Stylized Abstract Wave Artwork -->
+<img class="w-full h-full object-cover select-none" data-alt="Abstract graphic waves with layered orange, crimson red, yellow, deep charcoal, and soft sky blue organic bands radiating smoothly against an off-white minimal canvas, high aesthetic cinematic film color grading test pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxcGy7GhAbXAPIhq9CIeDhjEd-1oum5LewT-rN4fYVDDQb4se-FGelS6PSQgpxEsuCvG_Q9uHBh6DTjMXprRaEm5IuAZkB6Bb4IJN6FlZA5v06kjcg87jOqsPlEyNq0t4gjOGZZxUXSRwtO8W4lVMod9dKEAWy8XOWY4qXRvxXJ7JMoa8hba97Z-1wyHzPcdZft0ha_01-WNvB3TORcRNE10ZpTNTqD_QjCiGT4bEL5EMIhnQEKwdczg"/>
+<!-- Dynamic Aspect Framing Guidelines Overlay -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<!-- 9:16 Vertical Bounding Box Guide -->
+<div class="h-full aspect-[9/16] border-2 border-dashed border-secondary/60 relative flex flex-col justify-between p-2">
+<div class="flex justify-between items-center">
+<span class="px-1.5 py-0.5 rounded bg-secondary/80 text-white font-label-code text-[9px] backdrop-blur-sm">9:16 SAFE ZONE</span>
+<span class="material-symbols-outlined text-white text-[14px]">center_focus_strong</span>
+</div>
+<div class="flex justify-center">
+<span class="px-2 py-0.5 rounded-full bg-black/60 text-white font-label-pill text-[10px] backdrop-blur-md">Auto Subject Centered</span>
+</div>
+</div>
+<!-- Rule of thirds crosshairs -->
+<div class="absolute inset-0 grid grid-cols-3 grid-rows-3 pointer-events-none opacity-20">
+<div class="border-r border-b border-white"></div>
+<div class="border-r border-b border-white"></div>
+<div class="border-b border-white"></div>
+<div class="border-r border-b border-white"></div>
+<div class="border-r border-b border-white"></div>
+<div class="border-b border-white"></div>
+<div class="border-r border-white"></div>
+<div class="border-r border-white"></div>
+<div></div>
+</div>
+</div>
+<!-- Floating Preview Scrub Header -->
+<div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+<span class="px-2.5 py-1 rounded bg-black/60 text-white font-label-timecode text-label-timecode backdrop-blur-md">4K UHD Master (3840×2160)</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code text-[10px] font-bold">COLOR GRADE ACCELERATED</span>
+</div>
+<!-- On-Screen Burning Subtitle Mockup -->
+<div class="absolute bottom-6 px-6 py-1.5 rounded-md bg-black/50 backdrop-blur-sm max-w-sm text-center">
+<span class="font-headline-md text-white text-[15px] italic tracking-wide font-serif">“Pure cinematic cadence meets effortless precision.”</span>
+</div>
+</div>
+<!-- Quick Audio Peak Meters -->
+<div class="flex items-center gap-3 px-2 py-1">
+<span class="font-label-code text-[10px] text-on-surface-variant font-medium">AUDIO LUFS -14.1</span>
+<div class="flex-1 h-1.5 bg-surface-container rounded-full overflow-hidden flex gap-0.5">
+<div class="h-full bg-tertiary w-[75%] rounded-full"></div>
+<div class="h-full bg-primary-container w-[10%] rounded-full"></div>
+</div>
+<span class="font-label-code text-[10px] text-on-surface-variant">PASS</span>
+</div>
+</div>
+<!-- SECTION 2: Hardware WASM Render Monitor & Progress Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">memory</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">WebAssembly Hardware Dispatch</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Encoding Track 1: 4K Master • Track 2: 9:16 Shorts Cut</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-timecode text-body-sm font-semibold tracking-wide">
+              88% RENDERED
+            </span>
+</div>
+<!-- Progress Bar & Inline Metrics -->
+<div class="flex flex-col gap-2">
+<div class="w-full h-3 bg-surface-container-low rounded-full overflow-hidden p-0.5">
+<div class="h-full bg-gradient-to-r from-secondary to-primary rounded-full transition-all duration-300 ease-out" style="width: 88%;"></div>
+</div>
+<div class="flex justify-between items-center font-label-timecode text-label-timecode text-on-surface-variant">
+<span>Frame 3,120 / 3,546</span>
+<span class="text-secondary font-medium">00:04 Remaining</span>
+</div>
+</div>
+<!-- Speed & Data Grid -->
+<div class="grid grid-cols-3 gap-space-sm pt-2">
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-code text-[11px] text-on-surface-variant">EXPORT SPEED</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">4.2×</span>
+<span class="font-label-code text-[10px] text-tertiary">Real-Time FPS: 101</span>
+</div>
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-code text-[11px] text-on-surface-variant">WRITTEN DATA</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">142 MB</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">Target: ~180 MB</span>
+</div>
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-code text-[11px] text-on-surface-variant">MEMORY FOOTPRINT</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">420 MB</span>
+<span class="font-label-code text-[10px] text-secondary">Zero-Copy Buffer</span>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Ready-to-Save File Output Cards -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-code text-label-code text-on-surface-variant font-semibold tracking-wider">OUTPUT DELIVERABLES READY</span>
+<span class="font-label-timecode text-label-timecode text-tertiary font-medium">2 Files Available for Immediate Save</span>
+</div>
+<!-- Deliverable 1: 4K Master -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center justify-between gap-4 transition-all hover:bg-surface-container-low">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">video_file</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Coastline_Cinema_4K.mov</span>
+<div class="flex items-center gap-2 font-label-code text-[11px] text-on-surface-variant">
+<span>ProRes 422</span>
+<span>•</span>
+<span>3840×2160</span>
+<span>•</span>
+<span>142 MB</span>
+</div>
+</div>
+</div>
+<a class="shrink-0 px-4 py-2 rounded-full bg-on-background text-surface font-headline-sm text-body-sm font-semibold flex items-center gap-2 hover:bg-inverse-surface transition-colors" download="Coastline_Cinema_4K.mov" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Download 4K Master</span>
+</a>
+</div>
+<!-- Deliverable 2: Vertical Cut -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center justify-between gap-4 transition-all hover:bg-surface-container-low">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">smartphone</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Coastline_Reel_9x16.mp4</span>
+<div class="flex items-center gap-2 font-label-code text-[11px] text-on-surface-variant">
+<span>H.264 Web</span>
+<span>•</span>
+<span>1080×1920</span>
+<span>•</span>
+<span>38 MB</span>
+</div>
+</div>
+</div>
+<a class="shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-headline-sm text-body-sm font-semibold flex items-center gap-2 hover:bg-surface-container transition-colors" download="Coastline_Reel_9x16.mp4" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Download Vertical Cut</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Editorial Footer Ribbon -->
+<div class="mt-space-2xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-4 text-on-surface-variant font-label-code text-label-code">
+<div class="flex items-center gap-3">
+<span class="inline-block w-2 h-2 rounded-full bg-tertiary"></span>
+<span>ACID ENCODE STATUS: CALIBRATED AND ZERO ERRORS</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-on-surface transition-colors" href="#">Cloud Preset Sync</a>
+<a class="hover:text-on-surface transition-colors" href="#">SMPTE Diagnostics</a>
+<a class="hover:text-on-surface transition-colors" href="#">Frame-Accurate Metadata</a>
+</div>
+</div>
+</div>
+<script>
+    // Radio toggle interaction for resolution pills
+    const resLabels = document.querySelectorAll('#resSelector label');
+    resLabels.forEach(label => {
+      label.addEventListener('click', () => {
+        resLabels.forEach(l => {
+          l.classList.remove('bg-surface-container-high', 'ring-2', 'ring-primary', 'shadow-sm');
+          l.classList.add('bg-surface-container-low');
+        });
+        label.classList.remove('bg-surface-container-low');
+        label.classList.add('bg-surface-container-high', 'ring-2', 'ring-primary', 'shadow-sm');
+      });
+    });
+
+    // Render button trigger simulation
+    const renderBtn = document.getElementById('startRenderBtn');
+    if (renderBtn) {
+      renderBtn.addEventListener('click', () => {
+        renderBtn.classList.add('scale-95');
+        setTimeout(() => renderBtn.classList.remove('scale-95'), 150);
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-surface-container py-space-xl"><div class="w-full px-margin-mobile md:px-margin flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-3"><img alt="Neon Filmstrip V Icon.png" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V-ntE8wFdJfPoDWnlhcs_7tqfzfHlwqDP9JlEVuUb54aUhUPnX0bEl92-uhTEc3refTvZeXoXf-2Zx_0RvqKZftOko1sCx7op5z92WVbehe5t0c-TBaL9gQv9cXYbTYYVweZWL3lviDb-G3CnJNbF_tFoEEgjwY642OpqQTgOSdkZt1N9myoDjlSSNTW9NdtD48i4Ve0VTBM90TOGuAC6NZfR_58y3zPnS6pLQGC5pOAcEIMbGkx2AAzPbGQwZWcPPotdln07nuQ"/><span class="font-headline-sm text-body-lg text-on-surface font-semibold">Voxcut</span><span class="font-label-timecode text-label-timecode text-on-surface-variant">© 2025 Voxcut Studios Inc. Precision creative engine.</span></div><div class="flex items-center gap-6"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="features" href="#">Overview</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="templates" href="#">Presets</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="pricing" href="#">Subscription</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="video-editor" href="#">Studio Console</a></div></div></footer></body></html>

@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body { margin: 0; padding: 0; }
+  body { @apply bg-white text-on-surface antialiased font-body-md; overscroll-behavior: none; }
+  :focus-visible { outline: 2px solid #316bf3; outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: #e03616; color: #fff; }
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+.material-symbols-outlined.filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+.font-serif-headline { font-family: 'Newsreader', Georgia, serif; letter-spacing: -0.025em; }
+
+/* Landing hero fan of cards (page1). */
+.fan-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+.card-1 { transform: translateY(32px) rotate(-11deg); }
+.card-2 { transform: translateY(12px) rotate(-5.5deg); }
+.card-3 { transform: translateY(-8px) scale(1.04); z-index: 10; }
+.card-4 { transform: translateY(12px) rotate(5.5deg); }
+.card-5 { transform: translateY(32px) rotate(11deg); }
+.fan-card:hover { transform: translateY(-16px) scale(1.06) rotate(0deg) !important; z-index: 30; box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25); }
+@media (prefers-reduced-motion: reduce) { .fan-card { transition: none; } }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+.thin-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+.thin-scrollbar::-webkit-scrollbar-thumb { background: #dce2f7; border-radius: 9999px; }
+.thin-scrollbar { scrollbar-width: thin; scrollbar-color: #dce2f7 transparent; }
+
+/* Range inputs styled like the reference scrubbers. */
+.vx-range { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 9999px; background: linear-gradient(to right, #b41d00 var(--fill, 50%), #e9edff var(--fill, 50%)); }
+.vx-range::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 9999px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer; }
+.vx-range::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 9999px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer; }
+
+.word { cursor: pointer; border-radius: 4px; padding: 0 1px; transition: background-color .12s; }
+.word:hover { background: #e1e8fd; }

@@ -1,0 +1,22 @@
+{
+  "name": "voxcut-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Voxcut API: projects, media probing, transcription, edit decision lists, suggestions, captions and rendering.",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\""
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.7.0",
+    "express": "^4.21.2",
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0",
+    "multer": "^2.0.2"
+  }
+}
