@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Icon, LogoMark } from '../components/chrome.jsx';
+import { Avatar, Icon, LogoMark, StartLink } from '../components/chrome.jsx';
 import { links } from '../router.js';
 
 const FAN = [
@@ -32,10 +32,8 @@ export default function Landing({ anchor }) {
             <a className="hover:text-neutral-950 transition-colors" href={links.exportPage()}>Pricing</a>
           </nav>
           <div className="flex items-center space-x-4">
-            <a className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-red rounded-full hover:bg-brand-darkRed shadow-sm hover:shadow-glow-red transition-all duration-200" href={links.studio()}>Start Free</a>
-            <a href={links.studio()} aria-label="Open your projects" className="flex rounded-full ring-2 ring-neutral-200 hover:ring-neutral-400 transition">
-              <span className="h-8 w-8 rounded-full bg-gradient-to-br from-[#FFE7E0] to-[#E9EEFC] flex items-center justify-center text-brand-red"><Icon name="person" className="text-[18px]" /></span>
-            </a>
+            <StartLink className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-red rounded-full hover:bg-brand-darkRed shadow-sm hover:shadow-glow-red transition-all duration-200" />
+            <span className="rounded-full ring-2 ring-neutral-200 hover:ring-neutral-400 transition"><Avatar /></span>
           </div>
         </div>
       </header>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { links } from '../router.js';
+import { logout, useSession } from '../auth.js';
 
 export function Icon({ name, className = '', filled = false, label }) {
   return (
@@ -17,12 +18,59 @@ export function VersionPill() {
   return <span className="px-2 py-0.5 rounded-full bg-surface-container font-label-code text-label-code text-on-surface-variant">v2.4</span>;
 }
 
+/** Signed in: initial + account menu. Signed out: link to the login page. */
 export function Avatar() {
+  const session = useSession();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!open) return undefined;
+    const close = e => { if (!ref.current?.contains(e.target)) setOpen(false); };
+    const esc = e => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('mousedown', close);
+    document.addEventListener('keydown', esc);
+    return () => { document.removeEventListener('mousedown', close); document.removeEventListener('keydown', esc); };
+  }, [open]);
+
+  if (session.status !== 'authenticated') {
+    return (
+      <a href="#/login" title="Sign in" aria-label="Sign in" className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+        <Icon name="person" className="text-on-primary text-[18px]" />
+      </a>
+    );
+  }
+  const { user } = session;
+  const signOut = async all => {
+    setOpen(false);
+    await logout({ all }).catch(() => {});
+    window.location.hash = '#/login';
+  };
   return (
-    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center" title="Local workspace">
-      <Icon name="person" className="text-on-primary text-[18px]" />
+    <div ref={ref} className="relative">
+      <button onClick={() => setOpen(o => !o)} aria-haspopup="menu" aria-expanded={open} aria-label={`Account: ${user.name}`}
+        className="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-body-md text-body-md font-semibold">
+        {user.name.trim().charAt(0).toUpperCase() || '?'}
+      </button>
+      {open && (
+        <div role="menu" className="absolute right-0 mt-2 w-64 rounded-xl bg-surface-container-lowest shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-surface-container p-2 z-[60]">
+          <div className="px-3 py-2 border-b border-surface-container mb-1">
+            <p className="font-body-md text-body-md font-semibold truncate">{user.name}</p>
+            <p className="font-label-code text-label-code text-on-surface-variant truncate">{user.email}</p>
+          </div>
+          <a role="menuitem" href={links.studio()} onClick={() => setOpen(false)} className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-container-low font-body-md text-body-md"><Icon name="folder_open" className="text-[18px]" />My projects</a>
+          <button role="menuitem" onClick={() => signOut(false)} className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-container-low font-body-md text-body-md text-left"><Icon name="logout" className="text-[18px]" />Sign out</button>
+          <button role="menuitem" onClick={() => signOut(true)} className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-error-container text-error font-body-md text-body-md text-left"><Icon name="devices" className="text-[18px]" />Sign out of all devices</button>
+        </div>
+      )}
     </div>
   );
+}
+
+/** Primary header CTA: register when signed out, open the studio when signed in. */
+export function StartLink({ className, children = 'Start Free' }) {
+  const session = useSession();
+  const signedIn = session.status === 'authenticated';
+  return <a className={className} href={signedIn ? links.studio() : '#/register'}>{signedIn ? 'Open Studio' : children}</a>;
 }
 
 const NAV = [
@@ -58,7 +106,7 @@ export function SiteHeader({ active }) {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <a className="px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-body-md text-body-md font-semibold shadow-cta hover:bg-primary transition-all duration-150" href={links.studio()}>Start Free</a>
+          <StartLink className="px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-body-md text-body-md font-semibold shadow-cta hover:bg-primary transition-all duration-150" />
           <Avatar />
         </div>
       </div>

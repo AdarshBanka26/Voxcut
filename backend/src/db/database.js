@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 
 // Bump when the schema changes and add a step to MIGRATIONS (SRS §8.1:
 // version the schema and migrate deliberately).
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 const MIGRATIONS = {
   1: `
@@ -95,6 +95,39 @@ const MIGRATIONS = {
       finished_at TEXT
     );
     CREATE INDEX idx_jobs_project ON jobs(project_id, created_at);
+  `,
+  // v2: accounts. Projects created before v2 have no owner; the first account
+  // registered on this server claims them (see auth routes).
+  2: `
+    CREATE TABLE users (
+      id TEXT PRIMARY KEY,
+      email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+      name TEXT NOT NULL,
+      password_hash TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      last_login_at TEXT
+    );
+
+    -- One row per issued refresh token (jti). Only a hash of the token is
+    -- stored. Rotation links tokens in a family so reuse of a rotated token
+    -- revokes the whole family.
+    CREATE TABLE refresh_tokens (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      family_id TEXT NOT NULL,
+      token_hash TEXT NOT NULL,
+      user_agent TEXT,
+      created_at TEXT NOT NULL,
+      expires_at TEXT NOT NULL,
+      revoked_at TEXT,
+      replaced_by TEXT
+    );
+    CREATE INDEX idx_refresh_user ON refresh_tokens(user_id);
+    CREATE INDEX idx_refresh_family ON refresh_tokens(family_id);
+
+    ALTER TABLE projects ADD COLUMN user_id TEXT REFERENCES users(id) ON DELETE CASCADE;
+    CREATE INDEX idx_projects_user ON projects(user_id, updated_at);
   `
 };
 

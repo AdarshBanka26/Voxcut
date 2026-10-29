@@ -1,5 +1,9 @@
 // Client for the Voxcut backend. Every failure becomes an ApiError carrying
-// the server's plain-language message so the UI can show it as-is.
+// the server's plain-language message so the UI can show it as-is. Requests
+// carry the in-memory access token; media/download URLs rely on the
+// httpOnly access cookie the server sets alongside it.
+
+import { getAccessToken, refreshSession } from './auth.js';
 
 export class ApiError extends Error {
   constructor(status, code, message, details) {
@@ -10,14 +14,35 @@ export class ApiError extends Error {
   }
 }
 
+const RETRYABLE = new Set(['TOKEN_EXPIRED', 'INVALID_TOKEN', 'AUTH_REQUIRED']);
+
+function authHeaders(extra = {}) {
+  const token = getAccessToken();
+  return token ? { ...extra, Authorization: `Bearer ${token}` } : extra;
+}
+
+/** Run a request; on an auth failure refresh the session once and retry. */
+async function withRefresh(send) {
+  let res = await send();
+  if (res.status === 401) {
+    const code = await res.clone().json().then(d => d?.error?.code).catch(() => null);
+    if (RETRYABLE.has(code)) {
+      try { await refreshSession(); } catch { return res; }
+      res = await send();
+    }
+  }
+  return res;
+}
+
 async function request(method, url, body) {
   let res;
   try {
-    res = await fetch(`/api${url}`, {
+    res = await withRefresh(() => fetch(`/api${url}`, {
       method,
-      headers: body !== undefined ? { 'Content-Type': 'application/json' } : undefined,
+      credentials: 'same-origin',
+      headers: authHeaders(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
       body: body !== undefined ? JSON.stringify(body) : undefined
-    });
+    }));
   } catch {
     throw new ApiError(0, 'OFFLINE', 'Cannot reach the Voxcut server. Check that the backend is running, then retry.');
   }
@@ -31,12 +56,26 @@ async function request(method, url, body) {
 }
 
 /** Upload with progress (fetch has no upload progress events). */
-function upload(url, file, onProgress) {
+async function upload(url, file, onProgress) {
+  // Make sure the token won't expire mid-upload of a large file.
+  if (!getAccessToken()) await refreshSession().catch(() => {});
+  try {
+    return await uploadOnce(url, file, onProgress);
+  } catch (err) {
+    if (err.status !== 401 || !RETRYABLE.has(err.code)) throw err;
+    await refreshSession().catch(() => { throw err; });
+    return uploadOnce(url, file, onProgress);
+  }
+}
+
+function uploadOnce(url, file, onProgress) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     const form = new FormData();
     form.append('file', file);
     xhr.open('POST', `/api${url}`);
+    const token = getAccessToken();
+    if (token) xhr.setRequestHeader('Authorization', `Bearer ${token}`);
     xhr.upload.onprogress = e => e.lengthComputable && onProgress?.(e.loaded / e.total);
     xhr.onerror = () => reject(new ApiError(0, 'OFFLINE', 'The upload failed because the server could not be reached.'));
     xhr.onload = () => {

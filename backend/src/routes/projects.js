@@ -32,11 +32,11 @@ function cleanSettings(input = {}, current = {}) {
 export function projectRoutes({ repos, jobs, config }) {
   const r = Router();
 
-  r.get('/projects', (req, res) => res.json({ projects: repos.projects.list() }));
+  r.get('/projects', (req, res) => res.json({ projects: repos.projects.list(req.user.id) }));
 
   r.post('/projects', (req, res) => {
     const name = text(req.body?.name, 'name', { max: 120, fallback: 'Untitled project', required: false }) ?? 'Untitled project';
-    const project = repos.projects.create({ name, settings: cleanSettings(req.body?.settings, { aspect: '16:9', captionStyle: 'minimal-clean', captionsVisible: true }) });
+    const project = repos.projects.create({ userId: req.user.id, name, settings: cleanSettings(req.body?.settings, { aspect: '16:9', captionStyle: 'minimal-clean', captionsVisible: true }) });
     res.status(201).json(snapshot(repos, project.id));
   });
 
@@ -94,6 +94,7 @@ export function projectRoutes({ repos, jobs, config }) {
     });
 
     const project = repos.projects.create({
+      userId: req.user.id,
       name: text(body.project?.name, 'name', { max: 120, required: false, fallback: 'Imported project' }) ?? 'Imported project',
       settings: cleanSettings(body.project?.settings ?? {}, { aspect: '16:9', captionStyle: 'minimal-clean', captionsVisible: true })
     });

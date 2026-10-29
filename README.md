@@ -49,6 +49,32 @@ The first transcription downloads the Whisper model (`onnx-community/whisper-bas
 | `VOXCUT_ALLOWED_ORIGINS` | none | CORS origins if the UI is hosted elsewhere |
 | `FFMPEG_PATH` / `FFPROBE_PATH` | npm binaries | Use a different ffmpeg build |
 
+## Authentication
+
+JWT access + refresh tokens. Copy `backend/.env.example` to `backend/.env` and set:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `JWT_ACCESS_SECRET` | dev: auto-generated in `data/dev-secrets.json`; **required in production** | Signs access tokens (32+ chars) |
+| `JWT_REFRESH_SECRET` | same as above; must differ from the access secret | Signs refresh tokens |
+| `JWT_ACCESS_EXPIRES_IN` | `15m` | Access token lifetime (`s`/`m`/`h`/`d`) |
+| `JWT_REFRESH_EXPIRES_IN` | `7d` | Refresh token lifetime |
+| `COOKIE_SECURE` | `true` when `NODE_ENV=production` | HTTPS-only cookies |
+
+| Endpoint | Behaviour |
+|---|---|
+| `POST /api/auth/register` `{name, email, password}` | Creates the account (password hashed with scrypt) and signs in |
+| `POST /api/auth/login` `{email, password}` | Returns `{ user, accessToken, expiresIn }` and sets the refresh cookie |
+| `POST /api/auth/refresh` | Uses the `vx_refresh` cookie (or `{refreshToken}` in the body) and **rotates** it |
+| `POST /api/auth/logout` `{all?: true}` | Revokes the refresh token (or every session) and clears cookies |
+| `GET /api/auth/me` | Current user |
+
+- Send the access token as `Authorization: Bearer <token>`. In the browser it is kept in memory only.
+- The refresh token is an `httpOnly`, `SameSite=Strict` cookie scoped to `/api/auth`. Only its SHA-256 hash is stored in the database. Reusing an already-rotated refresh token revokes that whole session family.
+- A cookie copy of the access token is accepted for **GET** requests only, so `<video>`, thumbnails and downloads work. Writes always need the header.
+- Every project and job belongs to its user; other users get `404`. Projects created before accounts existed are claimed by the first account registered.
+- Login and register are rate-limited per IP; wrong email and wrong password return the same message.
+
 ## API overview
 
 | Method & path | Purpose |

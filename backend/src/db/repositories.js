@@ -8,8 +8,15 @@ const now = () => new Date().toISOString();
 export const newId = prefix => `${prefix}_${randomUUID().replace(/-/g, '').slice(0, 20)}`;
 const json = (text, fallback) => { try { return text == null ? fallback : JSON.parse(text); } catch { return fallback; } };
 
+const mapUser = r => r && ({
+  id: r.id, email: r.email, name: r.name, createdAt: r.created_at, updatedAt: r.updated_at, lastLoginAt: r.last_login_at
+});
+const mapRefresh = r => r && ({
+  id: r.id, userId: r.user_id, familyId: r.family_id, tokenHash: r.token_hash, userAgent: r.user_agent,
+  createdAt: r.created_at, expiresAt: r.expires_at, revokedAt: r.revoked_at, replacedBy: r.replaced_by
+});
 const mapProject = r => r && ({
-  id: r.id, name: r.name, schemaVersion: r.schema_version, sourceMediaId: r.source_media_id,
+  id: r.id, userId: r.user_id, name: r.name, schemaVersion: r.schema_version, sourceMediaId: r.source_media_id,
   settings: json(r.settings, {}), createdAt: r.created_at, updatedAt: r.updated_at
 });
 const mapMedia = r => r && ({
@@ -39,26 +46,62 @@ const mapJob = r => r && ({
 export function createRepositories(db) {
   const touch = projectId => db.prepare('UPDATE projects SET updated_at = ? WHERE id = ?').run(now(), projectId);
 
+  const users = {
+    get: id => mapUser(db.prepare('SELECT * FROM users WHERE id = ?').get(id)),
+    /** Includes the password hash; only for credential checks. */
+    findByEmailWithHash(email) {
+      const r = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+      return r ? { ...mapUser(r), passwordHash: r.password_hash } : null;
+    },
+    count: () => db.prepare('SELECT COUNT(*) AS n FROM users').get().n,
+    create({ email, name, passwordHash }) {
+      const id = newId('usr');
+      const t = now();
+      db.prepare('INSERT INTO users (id, email, name, password_hash, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)')
+        .run(id, email, name, passwordHash, t, t);
+      return users.get(id);
+    },
+    touchLogin: id => db.prepare('UPDATE users SET last_login_at = ? WHERE id = ?').run(now(), id)
+  };
+
+  const refreshTokens = {
+    get: id => mapRefresh(db.prepare('SELECT * FROM refresh_tokens WHERE id = ?').get(id)),
+    create({ id, userId, familyId, tokenHash, userAgent, expiresAt }) {
+      db.prepare('INSERT INTO refresh_tokens (id, user_id, family_id, token_hash, user_agent, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
+        .run(id, userId, familyId, tokenHash, userAgent ?? null, now(), expiresAt);
+    },
+    /** Atomically revoke one token; returns false if it was already revoked. */
+    revoke(id, replacedBy = null) {
+      return db.prepare('UPDATE refresh_tokens SET revoked_at = ?, replaced_by = ? WHERE id = ? AND revoked_at IS NULL').run(now(), replacedBy, id).changes > 0;
+    },
+    revokeFamily: familyId => db.prepare('UPDATE refresh_tokens SET revoked_at = ? WHERE family_id = ? AND revoked_at IS NULL').run(now(), familyId),
+    revokeAllForUser: userId => db.prepare('UPDATE refresh_tokens SET revoked_at = ? WHERE user_id = ? AND revoked_at IS NULL').run(now(), userId),
+    deleteExpired: () => db.prepare('DELETE FROM refresh_tokens WHERE expires_at < ?').run(now())
+  };
+
   const projects = {
-    list() {
+    list(userId) {
       return db.prepare(`
         SELECT p.*, m.file_name, m.duration, m.width, m.height,
           (SELECT COUNT(*) FROM transcript_words w WHERE w.project_id = p.id) AS word_count
         FROM projects p LEFT JOIN source_media m ON m.id = p.source_media_id
-        ORDER BY p.updated_at DESC`).all().map(r => ({
+        WHERE p.user_id = ?
+        ORDER BY p.updated_at DESC`).all(userId).map(r => ({
         ...mapProject(r),
         media: r.file_name ? { fileName: r.file_name, duration: r.duration, width: r.width, height: r.height } : null,
         wordCount: r.word_count
       }));
     },
     get: id => mapProject(db.prepare('SELECT * FROM projects WHERE id = ?').get(id)),
-    create({ name, settings = {} }) {
+    create({ userId, name, settings = {} }) {
       const id = newId('prj');
       const t = now();
-      db.prepare('INSERT INTO projects (id, name, schema_version, settings, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)')
-        .run(id, name, SCHEMA_VERSION, JSON.stringify(settings), t, t);
+      db.prepare('INSERT INTO projects (id, user_id, name, schema_version, settings, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
+        .run(id, userId, name, SCHEMA_VERSION, JSON.stringify(settings), t, t);
       return projects.get(id);
     },
+    /** Give projects created before accounts existed to the given user. */
+    claimOrphans: userId => db.prepare('UPDATE projects SET user_id = ? WHERE user_id IS NULL').run(userId).changes,
     update(id, { name, settings }) {
       const p = projects.get(id);
       db.prepare('UPDATE projects SET name = ?, settings = ?, updated_at = ? WHERE id = ?')
@@ -201,5 +244,5 @@ export function createRepositories(db) {
     }
   };
 
-  return { db, projects, media, words, operations, suggestions, jobs };
+  return { db, users, refreshTokens, projects, media, words, operations, suggestions, jobs };
 }

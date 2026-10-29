@@ -20,10 +20,11 @@ const { FFMPEG, run, probe } = await import('../src/services/ffmpeg.js');
 let server;
 let base;
 let repos;
+let token;
 const media = {};
 
 async function api(method, url, body) {
-  const init = { method, headers: {} };
+  const init = { method, headers: token ? { Authorization: `Bearer ${token}` } : {} };
   if (body instanceof FormData) init.body = body;
   else if (body !== undefined) { init.body = JSON.stringify(body); init.headers['Content-Type'] = 'application/json'; }
   const res = await fetch(base + url, init);
@@ -65,6 +66,8 @@ before(async () => {
   const app = createApp({ repos, jobs: createJobManager(repos), config, log: () => {} });
   server = app.listen(0);
   base = `http://127.0.0.1:${server.address().port}`;
+  const reg = await api('POST', '/api/auth/register', { name: 'Editor', email: 'editor@example.com', password: 'correct horse' });
+  token = reg.body.accessToken;
 });
 
 after(async () => {

@@ -10,9 +10,14 @@ import { transcriptRoutes } from './routes/transcript.js';
 import { editRoutes } from './routes/edits.js';
 import { suggestionRoutes } from './routes/suggestions.js';
 import { exportRoutes } from './routes/exports.js';
+import { authRoutes } from './routes/auth.js';
+import { createAuthService } from './services/auth.js';
+import { requireAuth, requireJobOwner, requireProjectOwner } from './middleware/auth.js';
 
-export function createApp(ctx) {
-  const { config, log = console.log } = ctx;
+export function createApp(baseCtx) {
+  const { config, repos, log = console.log } = baseCtx;
+  const auth = createAuthService(repos, config.auth);
+  const ctx = { ...baseCtx, auth };
   const app = express();
   app.disable('x-powered-by');
 
@@ -20,7 +25,7 @@ export function createApp(ctx) {
     res.set({ 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'X-Frame-Options': 'SAMEORIGIN' });
     const origin = req.headers.origin;
     if (origin && config.allowedOrigins.includes(origin)) {
-      res.set({ 'Access-Control-Allow-Origin': origin, 'Vary': 'Origin', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE', 'Access-Control-Allow-Headers': 'Content-Type' });
+      res.set({ 'Access-Control-Allow-Origin': origin, 'Vary': 'Origin', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE', 'Access-Control-Allow-Headers': 'Content-Type, Authorization', 'Access-Control-Allow-Credentials': 'true' });
       if (req.method === 'OPTIONS') return res.status(204).end();
     }
     // Request log without bodies, file names or transcript text (NFR-12).
@@ -31,6 +36,11 @@ export function createApp(ctx) {
 
   app.use('/api', express.json({ limit: '25mb' }));
   app.get('/api/health', (req, res) => res.json({ ok: true, version: '1.0.0' }));
+  // Public: register, login, refresh, logout. Everything below needs a valid access token.
+  app.use('/api', authRoutes(ctx));
+  app.use('/api', requireAuth(repos, auth));
+  app.use('/api/projects/:id', requireProjectOwner(repos));
+  app.use('/api/jobs/:jobId', requireJobOwner(repos));
   for (const routes of [projectRoutes, mediaRoutes, transcriptRoutes, editRoutes, suggestionRoutes, exportRoutes]) app.use('/api', routes(ctx));
   app.use('/api', (req, res) => res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Unknown API endpoint.' } }));
 
